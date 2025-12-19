@@ -389,35 +389,5 @@ namespace DocentesporPeriodos.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap WhatsApp_Image_2025_06_25_at_10_00_07_PM {
-            get {
-                object obj = ResourceManager.GetObject("WhatsApp Image 2025-06-25 at 10.00.07 PM", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap WhatsApp_Image_2025_06_25_at_10_00_08_PM {
-            get {
-                object obj = ResourceManager.GetObject("WhatsApp Image 2025-06-25 at 10.00.08 PM", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap WhatsApp_Image_2025_06_25_at_10_001 {
-            get {
-                object obj = ResourceManager.GetObject("WhatsApp Image 2025-06-25 at 10.001", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

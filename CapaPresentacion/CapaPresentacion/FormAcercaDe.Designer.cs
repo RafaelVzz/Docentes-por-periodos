@@ -28,17 +28,11 @@
             this.pnlTitutloSuperior = new System.Windows.Forms.Panel();
             this.lblTituloSuperior = new System.Windows.Forms.Label();
             this.pnlContenedor = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblFooter = new System.Windows.Forms.Label();
             this.pnlTitutloSuperior.SuspendLayout();
             this.pnlContenedor.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +59,6 @@
             // pnlContenedor
             // 
             this.pnlContenedor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlContenedor.Controls.Add(this.tableLayoutPanel1);
             this.pnlContenedor.Controls.Add(this.label1);
             this.pnlContenedor.Controls.Add(this.panel1);
             this.pnlContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -76,43 +69,6 @@
             this.pnlContenedor.Size = new System.Drawing.Size(1087, 609);
             this.pnlContenedor.TabIndex = 1;
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 182);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1067, 315);
-            this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Image = global::DocentesporPeriodos.Properties.Resources.WhatsApp_Image_2025_06_25_at_10_00_08_PM;
-            this.pictureBox2.Location = new System.Drawing.Point(536, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(528, 309);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::DocentesporPeriodos.Properties.Resources.WhatsApp_Image_2025_06_25_at_10_00_07_PM;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(527, 309);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.White;
@@ -121,7 +77,7 @@
             this.label1.Location = new System.Drawing.Point(10, 10);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1067, 172);
+            this.label1.Size = new System.Drawing.Size(1067, 484);
             this.label1.TabIndex = 1;
             this.label1.Text = "Sistema administrativo creado con C# en Lenguaje de Programación I por Wilmer Sal" +
     "azar, estudiante de Ingeniería de Sistemas, todo esto de la mano del Ing. Wilmer" +
@@ -162,9 +118,6 @@
             this.Text = "FormAcercaDe";
             this.pnlTitutloSuperior.ResumeLayout(false);
             this.pnlContenedor.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -179,8 +132,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblFooter;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
