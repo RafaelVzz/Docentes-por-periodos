@@ -1,9 +1,16 @@
-﻿[Bb]in/
+# Carpetas de compilación (Basura que se genera al dar a 'Iniciar')
+[Bb]in/
 [Oo]bj/
+
+# Configuración personalizada de Visual Studio
 .vs/
+packages/
+Config.ini
 *.user
 *.suo
 *.userosscache
 *.sln.docstates
+
+# Archivos de base de datos temporales
 *.mdf
 *.ldf
