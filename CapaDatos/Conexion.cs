@@ -10,7 +10,7 @@ using System.Globalization;
 namespace CapaDatos {
     internal class Conexion 
     {
-        //string cadena = "Server=WILMERHP\\MSSQLSERVER2,1433;Database=AplicacionLenguaje1;User Id=loginRafael;Password=w4210;";
+        //string cadena = "Server=localhost,1234;Database=YourDatabase;User Id=username;Password=password1234;";
         private readonly string cadenaConexion;
 
         public Conexion() 
