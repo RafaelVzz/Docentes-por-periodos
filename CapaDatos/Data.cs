@@ -1,4 +1,4 @@
-﻿using CapaEntidades;
+using CapaEntidades;
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
@@ -58,28 +58,6 @@ namespace CapaDatos {
             }
         }
 
-        public bool CambiarClave(string usuario, int pin, string clave) {
-            using (SqlConnection conn = conexion.ConexionBD())
-            {
-                try
-                {
-                    conn.Open();
-                    string query = "UPDATE Usuarios SET clave = @clave WHERE nombreUsuario = @nombreUsuario AND pinUnico = @pinUnico";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-
-                    cmd.Parameters.AddWithValue("@nombreUsuario", usuario);
-                    cmd.Parameters.AddWithValue("@pinUnico", pin);
-                    cmd.Parameters.AddWithValue("@clave", clave);
-
-                    int filasAfectadas = cmd.ExecuteNonQuery();
-                    return filasAfectadas > 0;
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
-                }
-            }
-        }
 
         public async Task<ResultadoCambioDeClave> CambiarClaveAsync(string usuario, int pin, string clave)
         {
@@ -133,73 +111,6 @@ namespace CapaDatos {
             return int.TryParse(valor.ToString(), out resultado) ? resultado : 0;
         }
 
-        public bool InsertarDocentesDeExcel(DataTable dt, string periodo) {
-            int filasAfectadas = 0;
-
-            using (SqlConnection conn = conexion.ConexionBD())
-            {
-                conn.Open();
-                using (SqlTransaction trans = conn.BeginTransaction())
-                {
-                    try
-                    {
-                        
-
-                        foreach (DataRow fila in dt.Rows)
-                        {
-                            string cedula = fila["cedula"].ToString();
-                            string docente = fila["docente"].ToString();
-                            string clasificacion = fila["clasificacion"].ToString();
-                            string condicion = fila["condicion"].ToString();
-                            string categoriaDocente = fila["categoria_docente"].ToString();
-                            string asignatura = fila["asignatura"].ToString();
-                            string seccion = fila["seccion"].ToString();
-                            int horasTeoricas = TryParseEntero(fila["horas_teoricas"]);
-                            int horasPracticas = TryParseEntero(fila["horas_practicas"]);
-                            int horasLaboratorio = TryParseEntero(fila["horas_laboratorio"]);
-                            int cantidadHorasAcademicas = TryParseEntero(fila["cantidad_horas_academicas"]);
-                            string programa = fila["programa"].ToString();
-                            string nucleo = fila["nucleo"].ToString();
-                            int cantidad = TryParseEntero(fila["cantidad"]);
-
-
-                            string query = "INSERT INTO dataDocentes (cedula, docente, clasificacion, condicion, categoria_docente, asignatura, seccion, horas_teoricas, horas_practicas, horas_laboratorio, cantidad_horas_academicas, programa, nucleo, cantidad, periodo)" +
-                                "VALUES (@cedula, @docente, @clasificacion, @condicion, @categoria_docente, @asignatura, @seccion, @horas_teoricas, @horas_practicas, @horas_laboratorio, @cantidad_horas_academicas, @programa, @nucleo, @cantidad, @periodo)";
-
-                            SqlCommand cmd = new SqlCommand(query, conn, trans);
-
-                            cmd.Parameters.AddWithValue("@cedula", cedula);
-                            cmd.Parameters.AddWithValue("@docente", docente);
-                            cmd.Parameters.AddWithValue("@clasificacion", clasificacion);
-                            cmd.Parameters.AddWithValue("@condicion", condicion);
-                            cmd.Parameters.AddWithValue("@categoria_docente", categoriaDocente);
-                            cmd.Parameters.AddWithValue("@asignatura", asignatura);
-                            cmd.Parameters.AddWithValue("@seccion", seccion);
-                            cmd.Parameters.AddWithValue("@horas_teoricas", horasTeoricas);
-                            cmd.Parameters.AddWithValue("@horas_practicas", horasPracticas);
-                            cmd.Parameters.AddWithValue("@horas_laboratorio", horasLaboratorio);
-                            cmd.Parameters.AddWithValue("@cantidad_horas_academicas", cantidadHorasAcademicas);
-                            cmd.Parameters.AddWithValue("@programa", programa);
-                            cmd.Parameters.AddWithValue("@nucleo", nucleo);
-                            cmd.Parameters.AddWithValue("@cantidad", cantidad);
-                            cmd.Parameters.AddWithValue("@periodo", periodo);
-
-                            filasAfectadas += cmd.ExecuteNonQuery();
-                            
-                        }
-                        trans.Commit();
-                        return filasAfectadas > 0;
-                    }
-                    catch (Exception ex)
-                    {
-                        trans.Rollback();
-                        throw new Exception(ex.Message);
-
-                    }
-                }
-
-            }
-        }
 
         public async Task<RegistroDeImportaciones> InsertarDocentesDeExcelAsync(DataTable dt, string periodo)
         {
@@ -376,51 +287,10 @@ namespace CapaDatos {
             return lista;
         }
 
-        public DataTable FiltrarDocentes(Dictionary<string, object> filtros, string periodo) {
-            using (SqlConnection conn = conexion.ConexionBD())
-            {
-                conn.Open();
-
-                string query = "SELECT * FROM dataDocentes WHERE periodo = @Periodo";
-
-                foreach (var filtro in filtros)
-                {
-                    string columna = filtro.Key;
-
-                    if (columna == "horas_teoricas" || columna == "horas_practicas" || columna == "horas_laboratorio")
-                    {
-                        query += $" AND {columna} > 0";
-                    }
-                    else
-                    {
-                        query += $" AND {columna} = @{columna}";
-                    }
-                }
-
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Periodo", periodo);
-
-                foreach (var filtro in filtros)
-                {
-                    string columna = filtro.Key;
-
-                    if (columna != "horas_teoricas" && columna != "horas_practicas" && columna != "horas_laboratorio")
-                    {
-                        cmd.Parameters.AddWithValue("@" + columna, filtro.Value);
-                    }
-                }
-                
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                return dt;
-            }
-        }
 
         public async Task<DataTable> FiltrarDocentesAsync(Dictionary<string, object> filtros, string periodo)
         {
             DataTable dt = new DataTable();
-            var listaDocentes = new List<Docentes>();
 
             using (SqlConnection conn = conexion.ConexionBD())
             {
@@ -457,41 +327,9 @@ namespace CapaDatos {
                                 cmd.Parameters.AddWithValue("@" + columna, filtro.Value);
                             }
                         }
-                        await cmd.ExecuteScalarAsync();
 
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
                         da.Fill(dt);
-
-                        //var docente = new Docentes()
-                        //{
-                        //    Cedula = dt.Rows[0].ToString(),
-                        //    Docente = dt.Columns[1].ToString(),
-                        //    Clasificacion = dt.Columns[2].ToString(),
-                        //    Condicion = dt.Columns[3].ToString(),
-                        //    CategoriaDocente = dt.Columns[4].ToString(),
-                        //    Asignatura = dt.Columns[5].ToString(),
-                        //    Seccion = dt.Columns[6].ToString(),
-                        //    HorasTeoricas = int.TryParse(dt.Columns[7].ToString(), out int ht) ? ht : 0,
-                        //    HorasPracticas = int.TryParse(dt.Columns[8].ToString(), out int hp) ? hp : 0,
-                        //    HorasLaboratorio = int.TryParse(dt.Columns[9].ToString(), out int hl) ? hl : 0,
-                        //    CantidadHorasAcademicas = int.TryParse(dt.Columns[10].ToString(), out int cha) ? cha : 0,
-                        //    Programa = dt.Columns[11].ToString(),
-                        //    Nucleo = dt.Columns[12].ToString(),
-                        //    Cantidad = int.TryParse(dt.Columns[13].ToString(), out int c) ? c : 0
-                        //};
-
-                        //listaDocentes.Add(docente);
-
-                        //if (busqueda != null)
-                        //{
-                        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        //    da.Fill(dt);
-                        //}
-                        //else
-                        //{
-                        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        //    da.Fill(dt);
-                        //}
                     }
                 }
                 catch(Exception ex)

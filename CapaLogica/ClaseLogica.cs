@@ -1,4 +1,4 @@
-﻿using CapaDatos;
+using CapaDatos;
 using CapaEntidades;
 using DocumentFormat.OpenXml.Office2010.Drawing;
 using System;
@@ -61,9 +61,6 @@ namespace CapaLogica {
             return await data.ObtenerPeriodosConPlaceholder();
         }
 
-        public DataTable ObtenerDocentesFiltrados(Dictionary<string, object> filtros, string periodo) {
-            return data.FiltrarDocentes(filtros, periodo);
-        }
 
         public async Task<DataTable> ObtenerDocentesFiltradosAsync(Dictionary<string, object> filtros, string periodo)
         {
