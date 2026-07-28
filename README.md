@@ -1,29 +1,30 @@
-# Sistema de Gestión Académica - WinForms 📊
+# Academic Management System - WinForms 📊
 
-Aplicación de escritorio desarrollada en C# bajo una arquitectura en capas, diseñada para la gestión, importación y exportación de datos académicos mediante archivos Excel y SQL Server.
+Desktop application developed in C# under a layered architecture, designed for the management, import, and export of academic data using Excel files and SQL Server.
 
-## 📋 Requisitos del Sistema
+## 📋 System Requirements
 * **Framework:** .NET Framework 4.8
-* **Base de Datos:** SQL Server 2014 o superior.
-* **Librerías:** ClosedXML (Instalada vía NuGet).
+* **Database:** SQL Server 2014 or higher.
+* **Libraries:** ClosedXML (Installed via NuGet).
 
-## 🗄️ Configuración de la Base de Datos
-1. **Script:** Ejecuta el archivo `database_setup.sql` incluido en la raíz del repositorio para recrear la estructura de tablas necesaria.
-2. **Arquitectura:** Soporta conexión local o remota (Cliente-Servidor). Las estaciones se conectan mediante la IP de la PC servidor.
+## 🗄️ Database Configuration
+1. **Script:** Run the `database_setup.sql` file included in the root of the repository to recreate the required table structure.
+2. **Architecture:** Supports local or remote (Client-Server) connections. Workstations connect using the server PC's IP address.
 
-## ⚙️ Configuración Dinámica (Config.ini)
-El sistema utiliza un archivo de configuración externo gestionado por la clase `LectorIni` en la `CapaDatos` para desacoplar la infraestructura del código:
-* **Plantilla:** Utiliza el archivo `Config.ini.example` como base.
-* **Ubicación:** El archivo final `Config.ini` debe residir en la carpeta del ejecutable (`bin/Release` o carpeta de instalación).
-* **Parámetros:** Permite configurar Servidor (IP), Base de Datos, Usuario y Clave sin recompilar la aplicación.
+## ⚙️ Dynamic Configuration (Config.ini)
+The system uses an external configuration file managed by the `LectorIni` class in `CapaDatos` to decouple the infrastructure from the code:
+* **Template:** Use the `Config.ini.example` file as a starting point.
+* **Location:** The final `Config.ini` file must reside in the executable's folder (`bin/Release`, `bin/Debug`, or the installation folder).
+* **Parameters:** Allows configuring the Server (IP), Database, Username, and Password without recompiling the application.
 
-## 📄 Manejo de Excel (Reglas)
-Para asegurar la integridad de la importación y el correcto funcionamiento de los filtros:
-* Los archivos Excel deben mantener el número y nombre de encabezados institucional predefinido.
-* La aplicación asume este formato fijo para procesar la información.
+## 📄 Excel Handling (Rules)
+To ensure import integrity and correct filter functionality:
+* Excel files must maintain the predefined number and names of institutional headers.
+* The application assumes this fixed format to process the information.
+* Due to the above, the structure is rigid, and a complete code refactoring would be required to change the format of the Excel files.
 
-## 🚀 Instalación
-1. Clonar el repositorio.
-2. Restaurar paquetes NuGet en Visual Studio.
-3. Crear el archivo `Config.ini` basándose en el ejemplo.
-4. Compilar y ejecutar.
+## 🚀 Installation
+1. Clone the repository.
+2. Restore NuGet packages in Visual Studio.
+3. Create the `Config.ini` file based on the example.
+4. Build and run.
